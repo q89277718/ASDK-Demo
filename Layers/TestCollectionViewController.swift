@@ -19,10 +19,10 @@ class TestCollectionViewController : UIViewController , ASCollectionDataSource, 
     
     override func viewDidLoad() {
         
-        let layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout.init()
 //        let layout = TestLayout()
         
-        self.collectionNode = ASCollectionNode.init(frame: self.view.frame, collectionViewLayout: layout)
+        self.collectionNode = ASCollectionNode.init(frame: self.view.bounds, collectionViewLayout: layout)
         self.collectionNode?.dataSource = self
         self.collectionNode?.delegate = self
         
@@ -37,20 +37,28 @@ class TestCollectionViewController : UIViewController , ASCollectionDataSource, 
         return TestCollectionCellNode(data: rainforestCardsInfo[indexPath.item]);
     }
     
+//    func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
+//        return {
+//            return TestCollectionCellNode(data: self.rainforestCardsInfo[indexPath.item])
+//        }
+//    }
     func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
-        return ASSizeRangeMake(CGSize.init(width: 150.0, height: 250.0), CGSize.init(width: 150.0, height: 600.0))
+//        return ASSizeRangeMake(CGSize.init(width: 150.0, height: 150.0), CGSize.init(width: 150.0, height: 800.0))
+        let sz = TestCollectionCellNode.cellSize(data: self.rainforestCardsInfo[indexPath.item])
+        return ASSizeRangeMake(sz, sz);
     }
 
     func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
         return 1
     }
 }
-//
+
 //    func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
 //        return ASSizeRangeMake(CGSize.init(width: 150.0, height: 250.0), CGSize.init(width: 155.0, height: 500.0))
 //    }
 //}
-//
+
+
 class TestLayout: RainforestCollectionViewLayout, ASCollectionViewLayoutInspecting {
     
     func collectionView(_ collectionView: ASCollectionView, constrainedSizeForNodeAt indexPath: IndexPath) -> ASSizeRange {

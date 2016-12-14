@@ -84,8 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				206134AB19B53F8000888CAB /* RainforestCardCell.swift */,
-				20744EE419F3184A00089E92 /* GradientView.swift */,
 				2061349019B53BE200888CAB /* RainforestViewController.swift */,
+				20744EE419F3184A00089E92 /* GradientView.swift */,
 				20A29BF919B55FA2007FF4F2 /* Layers-Bridging-Header.h */,
 				2094AC3119E4CE1F00AF33ED /* Other Files */,
 				9272D2931DD45786000D3B7E /* TestCollectionViewController.swift */,
@@ -410,6 +410,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Layers/Layers-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -429,6 +430,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Layers/Layers-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

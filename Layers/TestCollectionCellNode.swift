@@ -10,7 +10,7 @@ import Foundation
 
 class TestCollectionCellNode: ASCellNode {
     var data:RainforestCardInfo?
-    var placeholderLayer: CALayer!
+    var placeholderNode: ASImageNode?
     var featureImageSizeOptional: CGSize?
     var backgroundImageNode: ASImageNode?
     var isShow: Bool = false
@@ -34,20 +34,18 @@ class TestCollectionCellNode: ASCellNode {
     }
     
     func layoutViews() -> Void {
-        self.isLayerBacked = true
         self.shouldRasterizeDescendants = true
         self.borderColor = UIColor(hue: 0, saturation: 0, brightness: 0.85, alpha: 0.2).cgColor
         self.borderWidth = 1
         
-        let placeholderNode = ASImageNode()
-        placeholderNode.image = UIImage(named: "cardPlaceholder")!
-        placeholderNode.contentsScale = UIScreen.main.scale
-        placeholderNode.contentMode = .scaleAspectFill
-        placeholderNode.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.85, alpha: 1)
+        self.placeholderNode = ASImageNode()
+        self.placeholderNode?.isLayerBacked = true
+        self.placeholderNode?.image = UIImage(named: "cardPlaceholder")!
+        self.placeholderNode?.contentsScale = UIScreen.main.scale
+        self.placeholderNode?.contentMode = .scaleAspectFill
+        self.placeholderNode?.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.85, alpha: 1)
         
-        self.addSubnode(placeholderNode)
-        self.placeholderLayer = placeholderNode.layer
-//        placeholderLayer.contentsGravity = kCAGravityCenter
+        self.addSubnode(placeholderNode!)
     }
     
     override func layout() {
@@ -55,7 +53,7 @@ class TestCollectionCellNode: ASCellNode {
         
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-        placeholderLayer?.frame = bounds
+        self.placeholderNode?.frame =  FrameCalculator.frameForContainer(featureImageSize: (UIImage(named:(data?.imageName)!)?.size)!)
         
         featureImageNode?.frame = FrameCalculator.frameForFeatureImage(
             featureImageSize: (UIImage(named:(data?.imageName)!)?.size)!,
@@ -70,15 +68,18 @@ class TestCollectionCellNode: ASCellNode {
         CATransaction.commit()
     }
     
-    
-    override func calculateSizeThatFits(_ constrainedSize: CGSize) -> CGSize {
-        if let featureImageSize = self.featureImageSizeOptional {
-            return featureImageSize
-//            return FrameCalculator.sizeThatFits(size: constrainedSize, withImageSize: featureImageSize)
-        } else {
-            return CGSize.zero
-        }
+    class func cellSize(data:RainforestCardInfo) ->CGSize {
+        return FrameCalculator.frameForContainer(featureImageSize: (UIImage(named:(data.imageName))?.size)!).size
     }
+    
+//    override func calculateSizeThatFits(_ constrainedSize: CGSize) -> CGSize {
+//        if let featureImageSize = self.featureImageSizeOptional {
+//            return featureImageSize
+////            return FrameCalculator.sizeThatFits(size: constrainedSize, withImageSize: featureImageSize)
+//        } else {
+//            return CGSize.zero
+//        }
+//    }
     
     override func willEnterHierarchy() {
         
@@ -88,7 +89,6 @@ class TestCollectionCellNode: ASCellNode {
         data = cardInfo
         //MARK: Image Size Section
         let image = UIImage(named: cardInfo.imageName)!
-        featureImageSizeOptional = image.size
         
         self.backgroundImageNode = ASImageNode()
         self.backgroundImageNode?.image = image
@@ -107,6 +107,7 @@ class TestCollectionCellNode: ASCellNode {
                 return image
             }
         }
+        featureImageSizeOptional = FrameCalculator.frameForContainer(featureImageSize: image.size).size//image.size
         
         self.backgroundImageNode?.frame = FrameCalculator.frameForContainer(featureImageSize: image.size)
         

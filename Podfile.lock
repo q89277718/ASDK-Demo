@@ -1,12 +1,10 @@
 PODS:
-  - AsyncDisplayKit (2.0-beta.1):
-    - AsyncDisplayKit/PINRemoteImage (= 2.0-beta.1)
-  - AsyncDisplayKit/ASDealloc2MainObject (2.0-beta.1)
-  - AsyncDisplayKit/Core (2.0-beta.1):
-    - AsyncDisplayKit/ASDealloc2MainObject
-  - AsyncDisplayKit/PINRemoteImage (2.0-beta.1):
+  - AsyncDisplayKit (2.0):
+    - AsyncDisplayKit/PINRemoteImage (= 2.0)
+  - AsyncDisplayKit/Core (2.0)
+  - AsyncDisplayKit/PINRemoteImage (2.0):
     - AsyncDisplayKit/Core
-    - PINRemoteImage/iOS (= 3.0.0-beta.6)
+    - PINRemoteImage/iOS (= 3.0.0-beta.7)
     - PINRemoteImage/PINCache
   - PINCache (3.0.1-beta.2):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.2)
@@ -14,10 +12,10 @@ PODS:
   - PINCache/Arc-exception-safe (3.0.1-beta.2):
     - PINCache/Core
   - PINCache/Core (3.0.1-beta.2)
-  - PINRemoteImage/Core (3.0.0-beta.6)
-  - PINRemoteImage/iOS (3.0.0-beta.6):
+  - PINRemoteImage/Core (3.0.0-beta.7)
+  - PINRemoteImage/iOS (3.0.0-beta.7):
     - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.6):
+  - PINRemoteImage/PINCache (3.0.0-beta.7):
     - PINCache (= 3.0.1-beta.2)
     - PINRemoteImage/Core
 
@@ -30,13 +28,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AsyncDisplayKit:
-    :commit: 6bbc9a3cb04b2c9611a305aa43f65e526f16b1c4
+    :commit: 2e1d6c122e6882af9eebd6685347a960bccd4ea1
     :git: https://github.com/facebook/AsyncDisplayKit.git
 
 SPEC CHECKSUMS:
-  AsyncDisplayKit: b2164ff827cb31e39af2e392fb317c9f10d72993
+  AsyncDisplayKit: ed88de8d9fb404e098f4fdde9b8db50f23972f56
   PINCache: 6d273a6e0754bd26e3f12a38a90dde73cc6a42b2
-  PINRemoteImage: 60156f185c9360ca4e93832cd490d6f6c7afbd9a
+  PINRemoteImage: ff63baf185088530db6cfa41cb665e2b5126b5c3
 
 PODFILE CHECKSUM: 4f2d6040cf2509708970bdd1e1c2fa87bd84cf6a
 
